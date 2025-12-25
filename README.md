@@ -1,50 +1,52 @@
-# Welcome to your Expo app 👋
+# 🛡️ Fidelis
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> **"AI that remains Faithful."**
 
-## Get started
+**Fidelis** is an intelligent spiritual companion for Catholics, designed to bridge the gap between ancient tradition and modern technology. Unlike generic AI chatbots, Fidelis uses **Retrieval-Augmented Generation (RAG)** to ground every answer in official Church documents, minimizing hallucinations and ensuring doctrinal accuracy.
 
-1. Install dependencies
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Android-black)
+![Stack](https://img.shields.io/badge/built%20with-React%20Native%20%2B%20Supabase-green)
 
-   ```bash
-   npm install
-   ```
+## 🚀 Features
 
-2. Start the app
+### 🕯️ Module A: The Sacristan (Liturgy)
+A specialized assistant for Altar Servers and Sacristans.
+- **Rubric Checks:** "When do I ring the bell during the Epiclesis?"
+- **Setup Lists:** Instant checklists for Solemnities, Feasts, and Memorials.
+- **Source:** *General Instruction of the Roman Missal (GIRM)*.
 
-   ```bash
-   npx expo start
-   ```
+### 📖 Module B: The Theologian (Doctrine)
+A Q&A engine for deep theological inquiry.
+- **Citation Engine:** Every answer cites specific paragraph numbers (e.g., `[CCC 1324]`).
+- **Hallucination Guard:** If the answer isn't in the source text, Fidelis admits ignorance rather than inventing doctrine.
+- **Source:** *Catechism of the Catholic Church (CCC)*.
 
-In the output, you'll find options to open the app in a
+### 🎙️ Module C: The Listener (Homily-to-Action)
+An audio tool to operationalize Sunday sermons.
+- **Record & Transcribe:** Captures the homily using the device microphone.
+- **Action Plans:** Generates a 3-point summary and a specific "Weekly Mission" based on the priest's message.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🛠️ Tech Stack
 
-## Get a fresh project
+* **Frontend:** [React Native](https://reactnative.dev/) (via [Expo SDK 50+](https://expo.dev/))
+* **Styling:** [NativeWind](https://www.nativewind.dev/) (Tailwind CSS for Native)
+* **Backend / Database:** [Supabase](https://supabase.com/) (PostgreSQL)
+* **Vector Search:** `pgvector` extension for storing embeddings.
+* **AI Orchestration:** [LangChain.js](https://js.langchain.com/)
+* **LLM:** OpenAI `gpt-4o-mini`
+* **Audio Processing:** OpenAI Whisper API
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## 🏗️ Architecture
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```mermaid
+graph LR
+    A[User Query] --> B(Fidelis App)
+    B --> C{Supabase Vector Store}
+    C -- Retrieval --> D[Relevant Documents]
+    D --> E[OpenAI GPT-4]
+    E -- Contextual Answer --> B
